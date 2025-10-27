@@ -1,0 +1,289 @@
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #233511;
+  overflow-y: auto;
+  padding: 1.5rem 1rem; 
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+  .scrollable-panel {
+    overflow: hidden; 
+  }
+  .panel-body {
+    display: none; 
+    overflow-y: auto; 
+    max-height: 400px; 
+    padding: 10px; 
+  }
+  .panel-body.active {
+    display: block; /
+  }
+
+  .filter-container {
+    margin-bottom: 10px;
+  }
+
+/* Hide sidebar when toggled (for mobile/desktop) */
+.sidebar.hidden {
+  transform: translateX(-100%); /
+}
+
+/* Main content */
+.main-content {
+  margin-left: 300px; /* Slightly smaller margin for better proportion */
+  padding: 4rem 5rem; 
+  background-color: #f7f9fb;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+/* Fade animation */
+.hide-filter { display: none !important; opacity: 0; }
+.fade-in { animation: fadeIn 0.25s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-3px);} to { opacity: 1; transform: translateY(0);} }
+
+/* Expand button styling */
+.expand-btn {
+  background-color: #233511;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 6px;
+  transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+.expand-btn:hover { background-color: #1d2c0f; }
+.expand-btn.expanded { transform: rotate(45deg); } /* Now synced with JS */
+
+/* Panel styling */
+.panel {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.panel:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.panel-header h2 {
+  font-size: 1.3rem;
+  color: #2a3d1a;
+  letter-spacing: 0.3px;
+}
+
+/* Panel body */
+.panel-body {
+  display: none;
+  margin-top: 1.5rem;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 10px;
+}
+.panel-body.active {
+  display: block;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+/* Filters */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: #f8f8f8;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.main-filter, .sub-filter {
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  width: 220px;
+}
+
+/* Post layout */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 3fr 0.8fr;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  padding: 1.3rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.post-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.post-cell {
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid #eee;
+}
+.post-cell:last-child { border-right: none; }
+
+.post-cell.dep {
+  font-weight: bold;
+  color: #4a5b32;
+}
+
+.post-cell.content .title {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #233511;
+}
+
+.post-cell.content .text {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.post-cell.actions {
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-direction: row;
+}
+
+/* Buttons */
+.view-btn, .delete-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.view-btn {
+  background-color: #4a5b32;
+  color: white;
+}
+.delete-btn {
+  background-color: #c0392b;
+  color: white;
+}
+.view-btn:hover { background-color: #3a4828; }
+.delete-btn:hover { background-color: #a5281e; }
+
+/* Empty state */
+.no-posts {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  margin-top: 1.5rem;
+}
+
+/* Modal Styles (Added - These were missing and causing button issues) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* Above sidebar */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent overlay */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.modal-content.large { max-width: 700px; }
+.modal-content.small { max-width: 400px; }
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close-btn:hover { color: #000; }
+
+.modal-body {
+  margin-top: 20px;
+}
+
+.content-box {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  white-space: pre-wrap; /* Preserve line breaks in content */
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#confirm-delete { background-color: #c0392b; color: white; }
+#cancel-delete { background-color: #ccc; }
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .main-content {
+    margin-left: 0; /* No gap on mobile */
+  }
+  .sidebar {
+    transform: translateX(-100%); /* Hidden by default on mobile */
+  }
+  .sidebar:not(.hidden) {
+    transform: translateX(0); /* Show when toggled */
+  }
+  .post-card { grid-template-columns: 1fr; }
+}

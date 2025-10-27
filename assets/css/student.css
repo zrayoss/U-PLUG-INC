@@ -1,0 +1,99 @@
+/* === Scrollable Panel === */
+.scrollable-panel {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* === Panel layout === */
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel h2 {
+  margin: 0;
+  color: #233511;
+  font-size: 1.2rem;
+}
+
+/* === Expand button === */
+/* === Expand button === */
+.expand-btn {
+  background-color: #233511;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the button when the PARENT panel is expanded */
+.panel.expanded .expand-btn {
+  transform: rotate(45deg);
+}
+
+
+/* === Collapsible === */
+.collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.panel.expanded .collapsible {
+  max-height: 500px;
+}
+
+/* === Filter + Search === */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.filter-group label {
+  font-weight: 600;
+}
+
+.search-group input,
+.filter-group select {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-group {
+    width: 100%;
+  }
+
+  .search-group input {
+    width: 100%;
+  }
+}

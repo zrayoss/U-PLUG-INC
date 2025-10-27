@@ -1,0 +1,608 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: #f7f9fc;
+  color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: auto;  /* This ensures the logo is pushed to the leftmost side */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #233511;
+  color: white;
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: #e7eaf0;
+  background: transparent;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  margin: 0 0.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  background: #e7eaf0;
+  color: #233511;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 500px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1.05rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #88b04b;
+  box-shadow: 0 0 0 2px rgba(136, 176, 75, 0.3);
+}
+
+#searchResults {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background-color: #2e4520;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  padding: 8px;
+}
+
+
+.icons {
+  margin-left: 1rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;  
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.tab.active {
+  background: #233511;
+  color: white;
+}
+
+.news-section {
+  display: none;
+}
+
+.news-section:not(.hidden) {
+  display: block;
+}
+
+.news-section h2 {
+  margin-bottom: 1rem;
+  color: #233511;
+}
+
+.news-card {
+  background: #e9f0fa;
+  border-left: 4px solid #233511;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  position: relative;
+  overflow: visible;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.confirm-card {
+  background: #fff8f8;
+  border: 2px solid #a80000;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.confirm-card p {
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+}
+
+.confirm-btn {
+  background: #a80000;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.cancel-btn {
+  background: #e0e0e0;
+  color: black;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Modal header and form */
+.modal-content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.modal-content button {
+  margin-top: 1rem;
+  background: linear-gradient(180deg, #2f6b2a 0%, #233511 100%);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: #27ae60;
+  transform: scale(1.05);
+}
+
+.close-btn {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Modal backdrop & centered panel */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16,18,20,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.2,0.8,0.2,1);
+  z-index: 999;
+}
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal .modal-content {
+  width: 92%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(8,10,12,0.18);
+  position: relative;
+}
+.modal .close-btn {
+  background: linear-gradient(180deg, #b73731 0%, #8a0000 100%);
+  position: absolute;
+  top: -7px;
+  right: 9px;
+  border: 0;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* Modal form controls */
+.modal textarea,
+.modal input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  padding: 0.5rem;
+  border: 1px solid rgba(35,53,17,0.12);
+  border-radius: 6px;
+}
+
+/* Modal buttons */
+.create-post-btn,
+.confirm-btn {
+  background: linear-gradient(180deg, #2f6b2a 0%, #233511 100%);
+  color: #fff;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.confirm-btn {
+  background: linear-gradient(180deg, #d0413a 0%, #a80000 100%);
+}
+.cancel-btn {
+  background: #eef0f2;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+  display: none; 
+}
+
+/* Edit / Delete buttons: more professional, compact, accessible */
+.edit-btn,
+.delete-btn,
+form input.edit-btn,
+form input.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 6px 10px;           /* compact but comfortable */
+  font-size: 0.94rem;
+  line-height: 1;
+  color: #ffffff;
+  background: linear-gradient(180deg, #314618 0%, #233511 100%);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+  cursor: pointer;
+  text-decoration: none;
+  /* smoother transitions with slightly longer duration and easing */
+  transition: transform 240ms cubic-bezier(.2,.8,.2,1),
+              box-shadow 260ms cubic-bezier(.2,.8,.2,1),
+              background 260ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform, box-shadow, background;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  outline: none;
+}
+
+/* Hover / active / focus states */
+.edit-btn:hover,
+.delete-btn:hover,
+form input.edit-btn:hover,
+form input.delete-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  background: linear-gradient(180deg, #25410f 0%, #1a2a0d 100%);
+}
+
+
+.edit-btn:active,
+.delete-btn:active,
+form input.edit-btn:active,
+form input.delete-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Focus ring for keyboard users */
+.edit-btn:focus,
+.delete-btn:focus,
+form input.edit-btn:focus,
+form input.delete-btn:focus {
+  box-shadow: 0 0 0 3px rgba(35,53,17,0.18), 0 6px 14px rgba(0,0,0,0.06);
+}
+
+/* Danger variant for delete */
+.delete-btn.danger,
+form input.delete-btn.danger {
+  background: linear-gradient(180deg, #d0413a 0%, #a80000 100%);
+  border-color: rgba(0,0,0,0.06);
+}
+.delete-btn.danger:hover,
+form input.delete-btn.danger:hover {
+  background: linear-gradient(180deg, #b73731 0%, #8a0000 100%);
+}
+
+.post-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 60;
+  overflow: visible;
+}
+
+
+/* TOAST NOTIF */
+
+.toast {
+  position: relative;
+  background: linear-gradient(180deg, #314618 0%, #233511 100%);
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  font-size: 0.95rem;
+  animation: slideFadeIn 0.5s ease forwards;
+  margin-bottom: 12px;
+  min-width: 280px;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end; /* ✅ Ensures toasts align right */
+}
+
+
+.toast .dismiss-toast {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toast-message {
+  padding-right: 1.5rem;
+}
+
+.toast-timestamp {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes slideFade {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+.toast.slideFade {
+  animation: slideFade 0.6s ease forwards;
+}
+
+/* SEARCH PROFILE RESULT */
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background-color: #2e4520;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-card:hover {
+  background-color: #324724;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.profile-card img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.profile-role,
+.profile-department {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Fixes for admin posts page: Scrollbars and button behavior */
+
+/* Prevent main page from scrolling to avoid cutting out the sidebar */
+.scrollable-panel {
+  overflow: hidden; /* No scrollbar on the main content area */
+}
+
+/* Panel sections: Start hidden, with independent scrollbar when expanded */
+.panel-body {
+  display: none; /* Hidden by default */
+  overflow-y: auto; /* Vertical scrollbar for long content */
+  max-height: 400px; /* Limit height for scrollability; adjust as needed (e.g., 500px or 60vh for responsiveness) */
+  padding: 10px; /* Optional: Add padding for better UX inside the scrollable area */
+  border: 1px solid #ccc; /* Optional: Light border to visually separate the scrollable area */
+  border-radius: 5px; /* Optional: Rounded corners */
+  background: #f9f9f9; /* Optional: Subtle background to distinguish from main page */
+}
+
+/* Show panel when expanded (toggled by JS via .active class) */
+.panel-body.active {
+  display: block;
+}
+
+/* Ensure filters and post lists fit within the scrollable panel body */
+.filter-container {
+  margin-bottom: 10px;
+  position: sticky; /* Optional: Keep filters at the top when scrolling */
+  top: 0;
+  background: inherit; /* Match panel background */
+  z-index: 10;
+  padding: 5px 0;
+}
+
+.post-list {
+  /* No changes needed, but ensure it fits within .panel-body */
+}
+
+/* Expand button styles (inherits from general button styles, but add specifics for toggling) */
+.expand-btn {
+  background: #e0e0e0; /* Neutral background */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.expand-btn:hover {
+  background: #d0d0d0; /* Subtle hover effect */
+}
+
+/* View and Delete buttons: Already styled in posts.css (.edit-btn, .delete-btn), but ensure they apply here */
+.view-btn {
+  /* Inherits from .edit-btn styles */
+}
+
+.delete-btn {
+  /* Inherits from .delete-btn styles, and add danger variant if needed */
+  background: linear-gradient(180deg, #d0413a 0%, #a80000 100%); /* Red for delete */
+}
+
+.delete-btn:hover {
+  background: linear-gradient(180deg, #b73731 0%, #8a0000 100%);
+}

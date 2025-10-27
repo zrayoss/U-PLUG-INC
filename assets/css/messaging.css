@@ -1,0 +1,552 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: #f7f9fc;
+  color: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: auto;  /* This ensures the logo is pushed to the leftmost side */
+}
+
+/* NEW NAVBAR */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #233511;
+  color: white;
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: #e7eaf0;
+  background: transparent;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  margin: 0 0.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  background: #e7eaf0;
+  color: #233511;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 500px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1.05rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #88b04b;
+  box-shadow: 0 0 0 2px rgba(136, 176, 75, 0.3);
+}
+
+#searchResults {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background-color: #2e4520;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  padding: 8px;
+}
+
+/* NEW NAVBAR */
+
+
+@media (max-width: 900px) {
+  .messaging-layout {
+    flex-direction: column;
+    height: auto;
+  }
+  .contacts-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 3px solid #111;
+  }
+  .chat-panel {
+    width: 100%;
+  }
+}
+
+/* new */
+
+@keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  
+
+/* === Messaging Layout === */
+    .messaging-wrapper {
+      display: flex;
+      height: calc(100vh - 80px);
+      background-color: #f9f9f9;
+      width: 100%;
+      margin: 0;
+      box-shadow: none;
+    }
+
+    /* === Contact List (Left) === */
+    .contact-list {
+      width: 350px;
+      background-color: #f9f9f9;
+      border-right: 1px solid #ddd;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .contact-list-header {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      padding-left: 10px;
+    }
+
+    .contact-button {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .contact-button:hover,
+    .contact-button.active {
+      background-color: #f0f2f5;
+      transform: scale(1.02);
+    }
+
+    .avatar-circle {
+      width: 40px;
+      height: 40px;
+      background-color: goldenrod;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .avatar-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+    }
+    
+    .avatar-image img.profile-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Contact Info */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Name */
+    .contact-name {
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Last Message Preview */
+    .last-message {
+      font-size: 14px;
+      color: #666;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    /* Button Reset */
+    .contact-button button {
+      all: unset;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    /* === Chat Panel (Right) === */
+    .chat-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
+
+    .chat-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .chat-history {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 1rem;
+      gap: 0.5rem;
+      background-color: #f0f2f5;
+    }
+
+    .message-wrapper {
+      display: flex;
+      width: 100%;
+    }
+    
+    .align-left {
+      justify-content: flex-start;
+    }
+    
+    .align-right {
+      justify-content: flex-end;
+    }
+    
+    .message {
+      max-width: 70%;
+      padding: 0.8rem 1rem;
+      margin: 0.3rem 0;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      word-wrap: break-word;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .message-left {
+      background-color: #f1f1f1;
+      color: #333;
+      border-top-left-radius: 0;
+    }
+    
+    .message-right {
+      background-color: #3b5c24;
+      color: white;
+      border-top-right-radius: 0;
+    }
+
+    .message small {
+      display: block;
+      font-size: 11px;
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+
+    .sent {
+      align-self: flex-end;
+      background-color: #dbe8f5;
+      border-bottom-right-radius: 5px;
+    }
+
+    .received {
+      align-self: flex-start;
+      background-color: #e9f0fa;
+      border-bottom-left-radius: 5px;
+    }
+
+    .message-time {
+      font-size: 0.7rem;
+      color: #666;
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .received .message-time {
+      text-align: left;
+    }
+
+    /* === Input Field === */
+    .chat-input {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      border-top: 1px solid #e0e0e0;
+      background-color: white;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: 2px solid #233511;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .chat-input input:focus {
+      border-color: #3b5c24;
+    }
+
+    .chat-input button {
+      background-color: #233511;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+      background-color: #2e4a1a;
+    }
+
+    /* === Empty State === */
+    .empty-chat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #666;
+      text-align: center;
+    }
+
+    .empty-chat-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+/* TOAST NOTIF */
+
+.toast {
+  position: relative;
+  background: linear-gradient(180deg, #314618 0%, #233511 100%);
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  font-size: 0.95rem;
+  animation: slideFadeIn 0.5s ease forwards;
+  margin-bottom: 12px;
+  min-width: 280px;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end; /* ✅ Ensures toasts align right */
+}
+
+
+.toast .dismiss-toast {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toast-message {
+  padding-right: 1.5rem;
+}
+
+.toast-timestamp {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes slideFade {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+.toast.slideFade {
+  animation: slideFade 0.6s ease forwards;
+}
+
+/* UNREAD */
+
+.unread-badge {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background-color: #e63946;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 7px;
+  border-radius: 50%;
+  z-index: 2;
+}
+.contact-button {
+  position: relative;
+}
+
+.last-message.unread {
+  font-weight: bold;
+  color: #1d3557;
+}
+
+/* SEARCH PROFILE RESULT */
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background-color: #2e4520;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-card:hover {
+  background-color: #324724;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.profile-card img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.profile-role,
+.profile-department {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
+  text-align: right;
+}
+
+
+/* SEARCH PROFILE RESULT */

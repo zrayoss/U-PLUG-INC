@@ -1,0 +1,208 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #233511 0%, #0a2a5c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+
+}
+
+.glass-card {
+  background: rgba(35, 53, 17, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(10, 42, 92, 0.25);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 350px;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: glassFadeIn 1s cubic-bezier(0.4,0,0.2,1);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes glassFadeIn {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.glass-card h2 {
+  color: #e7eaf0;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.auth-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.auth-form input {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #aebacc;
+  background: rgba(255,255,255,0.18);
+  color: #e7eaf0;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.auth-form input:focus {
+  border: 1.5px solid #e7eaf0;
+  background: rgba(255,255,255,0.28);
+}
+
+.auth-form select {
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #aebacc;
+    background: rgba(255,255,255,0.18);
+    color: #e7eaf0;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 0.2rem;
+    transition: border 0.3s;
+    }
+    .auth-form select:focus {
+      border: 1.5px solid #e7eaf0;
+      background: rgba(255,255,255,0.28);
+    }
+
+.auth-form select:focus {
+  border: 1.5px solid #e7eaf0;
+  background: linear-gradient(90deg, #0a2a5c 0%, #233511 100%);
+}
+
+.auth-form option {
+  background: #233511;
+  color: #e7eaf0;
+}
+
+.login-btn, .signup-btn {
+  background: #233511;
+  color: #e7eaf0;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: 1.5px solid #aebacc;
+  cursor: pointer;
+  transition: background 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
+  margin-top: 0.5rem;
+}
+
+.login-btn:hover, .signup-btn:hover {
+  background: #e7eaf0;
+  color: #233511;
+}
+
+.switch-link {
+  margin-top: 1.2rem;
+  color: #e7eaf0;
+  font-size: 0.97rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.switch-link button {
+  background: none;
+  border: none;
+  color: #e7eaf0;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.switch-link button:hover {
+  color: #bcd;
+}
+
+/* NEW  fadeout*/
+.auth-container.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease !important;
+}
+
+
+
+/* NEW errorbox*/
+.error-box {
+  margin-top: 10px;
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease;
+}
+
+/* NEW fadein */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* NEW welcome test*/
+
+/* Hide by default */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      z-index: 999;
+    }
+
+    #welcome-screen.show {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .welcome-message #loading {
+      width: 40px;
+    }
+
+    .welcome-message {
+      color: white;
+      padding: 2rem 3rem;
+      font-size: 1.5rem;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
